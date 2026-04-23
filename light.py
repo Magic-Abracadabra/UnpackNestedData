@@ -7,7 +7,7 @@ def light(key, d) -> (bool, list):
 		if key in d:
 			l = True
 			values.append(d)
-		if type(d) == dict:
+		if isinstance(d, dict):
 			d = d.items()
 		for x in d:
 			try:
@@ -20,8 +20,8 @@ def light(key, d) -> (bool, list):
 					l = any([l, l_])
 					if l_:
 						values += value
-			except:
+			except TypeError:
 				pass
 		return l, values
-	except:
+	except TypeError:
 		return l, values
