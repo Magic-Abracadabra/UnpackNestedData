@@ -1,4 +1,5 @@
-def light(key, d):
+def light(key, d) -> (bool, list):
+	'''Returning (l, values). If the *key* is in the nested data d, then l=True. The list *values* will be composed of all iterable objects containing the key in d.'''
 	if key in d:
 		return True, [d]
 	else:
