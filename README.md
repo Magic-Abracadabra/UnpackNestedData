@@ -37,4 +37,6 @@ You have your target *key* 'admin'. You're wondering where the key is in the dat
 ```python
 >>> light('admin', data)
 (True, [('admin', 'secret')])
+>>> light('config', data)
+(True, [{'name': 'payment', 'enabled': False, 'config': {'gateway': 'stripe', 'api_key': 'sk_test_123'}}])
 ```
