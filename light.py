@@ -2,26 +2,19 @@ def light(key, d) -> (bool, list):
 	'''Returning (l, values). If the *key* is in the nested data d, then l=True. The list *values* will be composed of all iterable objects containing the key in d.'''
 	l = False
 	values = []
-	try:
-		iter(d)
+	if hasattr(d, '__iter__') and not isinstance(d, str):
 		if key in d:
 			l = True
 			values.append(d)
 		if isinstance(d, dict):
-			d = d.items()
+			if key in d.values():
+				l = True
+				if d[-1] != d:
+					values.append(d)
+			d = d.values()
 		for x in d:
-			try:
-				iter(x)
-				if key in x:
-					l = True
-					values.append(x)
-				else:
-					l_, value = light(key, x)
-					l = any([l, l_])
-					if l_:
-						values += value
-			except TypeError:
-				pass
-		return l, values
-	except TypeError:
-		return l, values
+			if hasattr(x, '__iter__') and not isinstance(x, str):
+				L, value = light(key, x)
+				l = any([l, L])
+				values += value
+	return l, values
