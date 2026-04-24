@@ -33,7 +33,7 @@ data = {
             "metadata": None
 }
 ```
-You have your target *key* 'admin'. You're wondering where the key is in the data. The light function will shed light on all iterable objects that contain the key. The light function will return (l, values). If the *key* is in the nested data d, then l=True. The list *values* will be composed of all iterable objects containing the key in d.
+You have your target *key* 'admin'. You're wondering where the key is in the data. The light function will shed light on all iterable objects that contain the key. It returns (l, values). If the *key* is in the nested data d, then l=True. All iterable objects containing the key in d compose the list *values*.
 ```python
 >>> light('admin', data)
 (True, [('admin', 'secret')])
